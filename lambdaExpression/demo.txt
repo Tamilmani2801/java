@@ -1,0 +1,140 @@
+Functional Interface:
+----------------------
+    -A class which contains only one method inside it then it is called as functional interface.
+    -We can add annotation as "funcitonal interface" above the class
+    -if use the annotation then only one method can be declared inside the class else it throw error
+
+Generally we implement an interface using implement in another class(refer example 1) but we can use anamolus inner class implementation and implement in
+main(refer example 2).
+
+example 1)
+----------
+
+interface a
+{
+    void show();
+}
+
+class b implements a
+{
+    public void show()
+    {
+        System.out.println("in show");
+    }
+}
+
+class UsingFuctionalInterface
+{
+    public static void main(String[] args)
+    {
+        a a1 = new b();
+        a1.show();
+    }
+}
+=========================================================
+exmaple 2) In this we implement interface in main method itself
+----------
+@FunctionalInterface
+interface a
+{
+    void show();
+}
+
+class UsingFuctionalInterface
+{
+    public static void main(String[] args)
+    {
+        a a1 = new a()
+        {
+            public void show()
+            {
+                System.out.println("show in");
+            }
+        };
+        a1.show();
+    }
+}
+==================================================================
+        -By this functional interface only lambda expression has been implemented.
+        -as compare example 1 and example 2 where code will be less in "eg 2" comapre to "eg 1" this is the purpose of 
+        lambda expression.
+
+
+LAMBDA expression:
+-------------------
+    Reducing the code as we know most of them as default this should come there so we reducing the code hence compiler will also understand
+
+
+eg)To print a statement:
+-----------------------------
+@FunctionalInterface
+interface a
+{
+    void show();
+}
+
+class UsingFuctionalInterface
+{
+    public static void main(String[] args)
+    {
+        a a1 = ()->System.out.println("show in");
+        a1.show();
+    }
+}
+================================================================
+eg)To pass one argumen:
+--------------------------
+@FunctionalInterface
+interface a
+{
+    void show(int i);
+}
+
+class UsingLambdaExpression
+{
+    public static void main(String[] args)
+    {
+        a a1 = i -> System.out.println("show in" + " " +  i);
+        a1.show(5);
+    }
+}
+
+=========================================================================
+eg)To pass two argument:
+------------------------
+@FunctionalInterface
+interface a
+{
+    void show(int i,int j);
+}
+
+class UsingLambdaExpression
+{
+    public static void main(String[] args)
+    {
+        a a1 = (i,j) -> System.out.println("show in" + " " +  i + " " + j);
+        a1.show(5,10);
+    }
+}
+
+====================================================================================
+eg)how to return
+-----------------
+@FunctionalInterface
+interface a
+{
+    int show(int i,int j);
+}
+
+class UsingLambdaExpression
+{
+    public static void main(String[] args)
+    {
+        a a1 = (i,j) -> i+j;
+        System.out.println(a1.show(5,10));
+    }
+}
+=======================================================================
+
+NOTE: lambda expression work for only funcitonal interface
+
