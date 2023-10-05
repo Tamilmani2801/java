@@ -1,0 +1,12 @@
+FileHandling:
+-------------
+
+
+
+
+
+see both the program :
+------------------------
+1)CreateWriteReadDelete.java will explain basic
+2)NotesTakingApplication.java will explain how to create an NotesTakingApplication
+3)filename.txt is created because of the above applicaiton where data are stored
