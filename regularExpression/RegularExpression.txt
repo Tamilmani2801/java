@@ -1,0 +1,114 @@
+Regular Expression:
+----------------------
+    -java.util.regex
+    -contains 3 class and 1 interface
+    -interface known as MatchResult interface
+    -class known as Pattern class, Match class, PatternSyntaxExceptional class
+uses:
+----
+    *validate enqury form
+    *Phone validation
+    *mail validation
+syntax:
+-------
+step 1: create pattern object
+                            Pattern p = Pattern.compile("ab");
+step 2: create matcher object
+                            Matcher m = p.matcher("abababbbaa");
+
+
+                            note:
+                            -----
+                            compile() , matcher() method are present in Pattern class
+                            find(),start(),end(),group() methods are present in Matcher class
+
+eg)
+---
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+class Demo1
+{
+    public static void main(String[] args)
+    {
+        //step 1: create the pattern object
+        //step 2: create the matcher object
+        
+        //compile() , matcher() method are present in Pattern class
+        //find(),start(),end(),group() methods are present in Matcher class
+
+        Pattern p = Pattern.compile("ab");
+        Matcher m = p.matcher("abababbaab");
+
+        while(m.find())
+        {
+            System.out.println(m.start() + " " + m.end() + " " + m.group());
+        }
+    }
+}
+=====================================================================================
+
+*various way to specify the pattern like "ab",they are known as character classes.
+
+Character classes:
+-----------------
+1)[abc]----------either a (or) b (or) c
+2)[^abc]---------except a , b , c
+3)[a-z]
+4)[A_Z]
+5)[a-zA-Z]
+6)[0-9]
+7)[a-zA-Z0-9]
+8)[^a-zA-Z0-9]
+
+Pre-defined Character classes:
+------------------------------
+\s----space character
+\S----except space character
+\d----any digit from 0 to 9
+\D----except digit 
+\w----any character
+\W----special character
+
+
+Note:
+----
+        while using pre-defined character classes in pattern use as extra forwars slash eg)"\\s"
+
+Quantifiers:
+------------
+a   ->exactly one a
+a+  ->atleast one a
+a*  ->any number of a 
+a?  ->atmost one a 
+
+phone number verification pattern
+----------------------------------
+(0|91)?[7-9][0-9]{9}
+
+explaination for above:
+----------------------
+-(0|91)?----if it is 11 digit then 0 will check else 12 digit number means 91 where question mark represent atleast once
+-[7-9]------1st digit should be 7,8,9
+-[0-9]{9}---remaining 9 digits can contanin 0-9 for that only {9}
+
+
+eg)
+--
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+class PhoneNumberValidation
+{
+    public static void main(String[] args)
+    {
+        Pattern p = Pattern.compile("0?[789][0-9]{9}");
+        Matcher m = p.matcher("9486523589");
+
+        System.out.println(m.matches());
+        
+    }
+}
+=========================================================================================================================
+
+mail verfication pattern
