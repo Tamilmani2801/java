@@ -1,0 +1,148 @@
+Exception handling :
+---------------------
+       -> Exception handling are different from errors.
+       -> errors are refer to, that the application cannot able to catch whereas exception are able to catch.
+
+       -object 
+            -throwable
+                -Exception
+                        -checked
+                                -SQLException
+                                -IOException
+
+                        -unchecked
+                                -RuntimeException
+                                    -ArithmeticException
+                                    -ArrayIndexOutOfBoundsException
+                                    -StringIndexOutOfBoundsException
+                                    -NullPointerException
+                                    -
+                -error
+
+
+
+        keywords used in exception:
+        ->try block
+        ->catch block
+        ->throw keyword
+        ->throws keyword
+        ->finally block  ---this will contain all the closing statements
+
+NOTES:
+------
+i)try and catch block:
+----------------------
+        -> we can write multiple catch block to handle multiple exception under one try block
+        -> some of the unchecked exception can be mentioned in catch but we dont know some of the exception so we can write a common
+catch block to handle all exception (see below example).
+
+eg)
+----
+class TryCatchFinally
+{
+    public static void main(String[] args)
+    {
+        int a = 10;
+        int b = 0;
+
+        try
+        {
+            System.out.println(a/b);
+        }
+        catch(ArithmeticException e)
+        {
+            e.printStackTrace();
+        }
+        catch(Exception e)
+        {
+            System.out.println("unknown exception");
+        }
+        finally
+        {
+            System.out.println("bye");
+        }
+    }
+}
+==========================================================================================
+ii)finally block
+-----------------
+        -> closing statement should be given in finally block
+        -> If some of the statement should be excute even if there is mistake in try block
+        -> whatever happen finally block will execute
+eg)see above
+===========================================================================================
+try with resources:
+---------------------
+        -> we can write only try block without catch block based on try with resources concept 
+============================================================================================
+iii)throws exception:
+---------------------
+        -> throws will supress the exception but it willnot handle the exception in order to handle we use try catch
+=====================================================================================================================
+iv)throw exception:
+--------------------
+        -> writing the exception and trowing use throw
+eg)
+--
+class UsingThrowThrows
+{
+    public static void main(String[] args) 
+    {
+        int i = 10;
+        int j = 0;
+
+        if(j == 0)
+        {
+            try
+            {
+                throw new MyException("not tamilmani");
+            }
+            catch(MyException e)
+            {
+                System.out.println(e);
+            }
+        }
+    }
+}
+
+class MyException extends Exception
+{
+    public MyException(String m)
+    {
+        super(m);
+    }
+}
+=====================================================================================================================
+        -> whenever the exception occurs the JVM will create excpetion object and throw the exception , we can also create exception and throw using "throw keyword".
+        -> 
+
+       ->Methods To print Exception:
+            i)printStackTrace() --This method prints exception information in the format of the Name of the exception: description of the exception, stack trace.
+            ii)toString()       --The toString() method prints exception information in the format of the Name of the exception: description of the exception.
+            iii)getMessage()    --The getMessage() method prints only the description of the exception.
+
+
+        ->Default Exception handler:
+        ->Exception object
+        ->call stack
+        ->There will be several Methods in the call stack and search the method to handle the exception if not founf the method then it throw some message and terminate 
+        the program.
+
+
+        Built in exception:
+        -------------------
+    1)ArithmeticException: It is thrown when an exceptional condition has occurred in an arithmetic operation.
+    2)ArrayIndexOutOfBoundsException: It is thrown to indicate that an array has been accessed with an illegal index. The index is either negative or greater than or equal to the size of the array.
+    3)ClassNotFoundException: This Exception is raised when we try to access a class whose definition is not found
+    4)FileNotFoundException: This Exception is raised when a file is not accessible or does not open.
+    5)IOException: It is thrown when an input-output operation failed or interrupted
+    6)InterruptedException: It is thrown when a thread is waiting, sleeping, or doing some processing, and it is interrupted.
+    7)NoSuchFieldException: It is thrown when a class does not contain the field (or variable) specified
+    8)NoSuchMethodException: It is thrown when accessing a method that is not found.
+    9)NullPointerException: This exception is raised when referring to the members of a null object. Null represents nothing
+    10)NumberFormatException: This exception is raised when a method could not convert a string into a numeric format.
+    11)RuntimeException: This represents an exception that occurs during runtime.
+    12)StringIndexOutOfBoundsException: It is thrown by String class methods to indicate that an index is either negative or greater than the size of the string
+    13)IllegalArgumentException : This exception will throw the error or error statement when the method receives an argument which is not accurately fit to the given relation or condition. It comes under the unchecked exception. 
+    14)IllegalStateException : This exception will throw an error or error message when the method is not accessed for the particular operation in the application. It comes under the unchecked exception.
+
