@@ -1,0 +1,397 @@
+Thread:
+-------
+    -The main aim of thread is to make to run the process parallel.
+    -Eventhough we donot create any thread the main itself is a thread.
+    -We can use thread by two methods
+            1)using Thread class
+            2)using Runnable interface
+    
+    -normal class cannot be act as thread
+
+
+eg)normal class not thread
+----------------------------
+class A 
+{
+    public void show()
+    {
+        for(int i=0;i<100;i++)
+        {
+            System.out.println("HI");
+        }
+    }
+}
+
+class B 
+{
+    public void show()
+    {
+        for(int i=0;i<100;i++)
+        {
+            System.out.println("HELLO");
+        }
+    }
+}
+
+class UsingThreads
+{
+    public static void main(String[] args)
+    {
+        A a1 = new A();
+        B b1 = new B();
+        a1.show();
+        b1.show();
+    }
+}
+
+===================================================================
+    We have extend Thread for each class and we have to use the methods like run() and start() and sleep()
+    -run() -----used for writing method in class
+    -start()----used for running the method in class in main
+    -sleep()----used for waiting
+    But by using thread is not best so use runnable interface which helps to attain multiple inheritance.
+steps:
+------
+1)create class and extend thread class
+2)create the method in the class using run() method 
+3)create the object of the class in main 
+4)call the reference varaible using start() method
+
+eg)
+----
+
+class A extends Thread 
+{
+    public void run()
+    {
+        for(int i=0;i<100;i++)
+        {
+            System.out.println("HI");
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch(Exception e)
+            {
+
+            }
+        }
+    }
+}
+
+class B extends Thread 
+{
+    public void run()
+    {
+        for(int i=0;i<100;i++)
+        {
+            System.out.println("HELLO");
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch(Exception e)
+            {
+
+            }
+        }
+    }
+}
+
+class UsingThreads
+{
+    public static void main(String[] args)
+    {
+        A a1 = new A();
+        B b1 = new B();
+        a1.start();
+        b1.start();
+    }
+}
+================================================================================
+using runnable interface:
+-------------------------
+    -In runnable interface there are only one method known as run() method ,so it is functional interface.
+    -In order to run in main method there is no start() method in runnable interface so we can create a thread class in main and
+    pass the reference varaible the class to the thread and use the start() method of the thread.
+
+steps:
+------
+1)create class and implements runnable interface 
+2)create the method in the class using run() method 
+3)create the object of the class in main 
+4)create the thread to use start() method in main
+5)pass the reference varaible of the class to the thread to use start() method
+4)call the reference varaible of the thread using start() method
+
+eg)
+----
+class A implements Runnable 
+{
+    public void run()
+    {
+        for(int i=0;i<10;i++)
+        {
+            System.out.println("HI");
+            try
+            {
+                Thread.sleep(10);
+            }
+            catch(Exception e)
+            {
+
+            }
+        }
+    }
+}
+
+class B implements Runnable
+{
+    public void run()
+    {
+        for(int i=0;i<100;i++)
+        {
+            System.out.println("HELLO");
+            try
+            {
+                Thread.sleep(10);
+            }
+            catch(Exception e)
+            {
+
+            }
+        }
+    }
+}
+
+class UsingRunnable
+{
+    public static void main(String[] args)
+    {
+        A a1 = new A();
+        B b1 = new B();
+
+        Thread t1 = new Thread(a1);
+        Thread t2 = new Thread(b1);
+
+        t1.start();
+        t2.start();
+    }
+}
+===============================================================================
+Note:
+-----
+    -hence runnable is a functional interface we can use lambda expression
+    -The difference between above and this program is in the above program we have two seperate class which is implements using
+functional interface so we can use as analamous class in main and convert as lambda expression.
+
+
+eg)
+---
+class UsingRunnable
+{
+    public static void main(String[] args)
+    {
+        Thread t1 = new Thread(()->
+        {
+            for(int i=0;i<10;i++)
+            {
+                System.out.println("HI");
+                try
+                {
+                    Thread.sleep(10);
+                }
+                catch(Exception e)
+                {
+                }
+                }
+        });
+        Thread t2 = new Thread(()->
+        {
+            for(int i=0;i<100;i++)
+            {
+                System.out.println("HELLO");
+                try
+                {
+                    Thread.sleep(10);
+                }
+                catch(Exception e)
+                {
+                }
+            }
+        });
+        t1.start();
+        t2.start();
+    }
+}
+=================================================================================
+join() method:
+---------------
+    -we have created two threads and some statements are found outside the thread hence which are handled by main thread so it will excecute at first
+before the two threads.
+    -if we want to run after the two threads we have to use join() method
+
+
+eg)
+---
+class UsingRunnable 
+{
+    public static void main(String[] args) throws Exception
+    {
+        Thread t1 = new Thread(()->
+        {
+            for(int i=0;i<10;i++)
+            {
+                System.out.println("HI");
+                try
+                {
+                    Thread.sleep(10);
+                }
+                catch(Exception e)
+                {
+                }
+                }
+        });
+        Thread t2 = new Thread(()->
+        {
+            for(int i=0;i<10;i++)
+            {
+                System.out.println("HELLO" + " " + Thread.currentThread().getPriority());
+                try
+                {
+                    Thread.sleep(10);
+                }
+                catch(Exception e)
+                {
+                }
+            }
+        });
+        t1.start();
+        t2.start();
+
+        t1.join();
+        t1.join();
+
+        System.out.println(t1.isAlive());
+
+        //setname of the thread
+
+        t1.setName("Tamil thread");
+        t2.setName("Mani thread");
+
+        //printing thread name
+        
+        System.out.println(t1.getName());
+        System.out.println(t2.getName());
+
+
+        //setting priority to the thread
+        t1.setPriority(1);
+        t2.setPriority(10);
+
+        t1.setPriority(Thread.MIN_PRIORITY); // represent 1
+        t2.setPriority(Thread.MAX_PRIORITY); // represent 2
+
+        //priority of the thread
+
+        System.out.println(t1.getPriority());
+        System.out.println(t2.getPriority());
+
+
+        System.out.println("bye");
+    }
+}
+=====================================================================================
+isalive() method:
+-----------------
+    To check whether the thread is alive or not. See in above example
+======================================================================================
+Finding thread name, setting thread name and giving priority to the thread
+--------------------------------------------------------------------------
+--to find the thread name use getName() method
+--to set the thread name use setName() method
+--to find priority of the thread use getPriority() method
+
+Generally the priority ranges from (1-10) and normal priority is 5 .
+
+--we can also set priority to the thread using setPriority()
+MIN_PRIORITY ----1
+MAX_PRIORITY ----10
+NORM_PRIORITY----5
+--The above three are inbuilt in threads
+
+(see above example)
+
+using currentThread():
+---------------------
+The above method help to represent the currentThread which will help to print inside the currentthread.
+
+eg)
+----
+System.out.println("HELLO" + " " + Thread.currentThread().getPriority());
+
+=======================================================================================================================
+
+Synchronized:
+-------------
+        -TO make thread safe we use Synchronized.
+        -For example two thread working on same method then there will leads to some problems in output in order to make each Thread
+act seperately we use Synchronized in the method.
+
+eg)
+--
+class Increament
+{
+    int count;
+
+    public synchronized void increament()
+    {
+        count++;
+    }
+}
+
+class UsingSynchronized
+{
+    public static void main(String[] args) throws Exception
+    {
+        Increament a = new Increament();
+
+        Thread t1 = new Thread(new Runnable()
+        {
+            public void run()
+            {
+                for(int i=0;i<1000;i++)
+                {
+                    a.increament();
+                    try{
+                        Thread.sleep(10);
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                }
+            }
+        });
+
+        Thread t2 = new Thread(new Runnable()
+        {
+            public void run()
+            {
+                for(int i=0;i<1000;i++)
+                {
+                    a.increament();
+                }
+            }
+        });
+
+        t1.start();
+        t2.start();
+
+        t1.join();
+        t2.join();
+
+        System.out.println(a.count);
+    }
+}
+=============================================================================================
