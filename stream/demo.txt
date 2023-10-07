@@ -64,7 +64,7 @@ operations can be pipelined.Terminal operations mark the end of the stream and r
 intermediate operations:
 -------------------------
 1)map()
-2)filter()
+2)filter()  -->it is found in predicate class
 3)sorted()
 
 Terminal operations:
