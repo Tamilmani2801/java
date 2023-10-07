@@ -118,4 +118,19 @@ class UsingStream
         System.out.println(result);
         
     }
-}
+==================================================================================================
+
+points to remember:
+----------------------
+1)How to convert array to stream?
+        String[] arr = {"tamilmani","shoban","prathap"};
+        Stream<String> result = Arrays.stream(arr);
+==============================================================
+2)How to convert List to Stream?
+        List<String> myList = new ArrayList<>();
+        Stream<String> streamFromList = myList.stream();
+==============================================================
+Using stream there are several use cases:
+----------------------------------------
+        In stream there is a concept called Collectors which help to several process in a data using stream.}
+
