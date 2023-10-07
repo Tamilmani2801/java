@@ -1,0 +1,14 @@
+Collectors:
+-------------
+    -Collectors is a class in stream package.
+    -it contains several methods like
+            -toList()
+            -toSet()
+            -to Map(key,value)
+            -groupingBy
+            -joining()
+            etc............
+
+
+
+There are several methods in Collectors....
