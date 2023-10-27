@@ -1,0 +1,513 @@
+Servlet:
+--------
+    -In order to access server we need a certain component to work with it.
+    -Before servlet there is a concept called CGI(common gateway interface) which will act as intermediate for web development which is based on process.
+    -Hence after java servlet it become more famous than CGI which based on thread.
+    -There are several servers like Apache tomcat, etc.....
+    -With the help of servlet we can interact with database, Applets , sockets
+
+
+server:
+-------
+-)Apache
+-)Apache Tomcat
+
+Difference between above two : 
+------------------------------
+Apache:
+	-Apache is the early invention whcih is applicable for static pages only
+	-using external plugins with the help for php or some other languages we can use for dynamic also
+Apache Tomcat:
+	-Apache Tomcat which is applicable for both static and dynamci pages
+	-It is mainly java based server 
+	-which is developed using java
+	-which contains servlet which is a java based package.
+For more information use these links:
+-----------------------------------------
+1)refer tomcat official webpage
+2)https://www.theserverside.com/video/Tomcat-vs-Apache-HTTP-Server-Whats-the-difference
+  
+How to install tomcat:
+---------------------
+	-Based on the version of java there will be one supportable Tomcat server.
+	-Download that from official webpage
+	-There are two concepts known as 
+		i)catalina_home
+		ii)catalina-base
+	i)catalina-home
+		-refers the whole pacakage as catalina home by the comapany
+		-hence we can also name the whole pacakage as caltalina home in our system which is standard
+		-catalina base is optional which is used when we need more than one server in our system at that time the common files knwon as .jar files are constant which are kept in catalina-home 
+		remaining can be kept in cataline base.
+	ii)catalina-base
+	-Then we need to fix the java path to the Tomcat
+	how we done:
+	------------
+		-There is a file in our system and open the file by using the gedit and the file name is .bashrc (In terminal type as gedit .bashrc ) a file wil open.
+		-in that add these two lines and save the file.
+			export CATALINA_HOME=/home/temp/Home/Web/apache-tomcat-10.1.14
+			export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+		-Open terminal form the folder in tomcat folder bin then enter the commands for start 
+			chmod +x startup.sh
+			chmod +x catalina.sh
+		-after this start the server each time and shutdown
+			sh startup.sh
+			sh shutdown.sh
+
+		
+Directories(or)Files in the folder which we download:
+-----------------------------------------------------
+1)bin
+2)conf
+3)lib
+4)logs
+5)temp
+6)webapps
+7)work
+
+hints:
+------
+	The files in the folder ends with "sh" refers to "shell" and for "bat" for windows
+
+Bin:
+----
+ 	-In bin there is a file startup.sh which is used for start the server
+ 	-For first time it will not start so use the command
+ 			chmod +x statip.sh
+ 			chmod +x catalina.sh
+ 	-After this use the command sh startup.sh for start the server and sh shutdown.sh for shutdown the server.
+ 	
+conf:
+----
+	-conf refers to configuration
+	-In conf there is a file known as server.xml suing this file we can change in which port we should run and generally we store all the files in webapps in order to run because initially they configure in webapps but we can modify that also in this file.
+
+lib:
+---
+	-all the important library to run servlet will found inside this
+	-we can also use this libarary to run our java code by using the command known as 
+			-cp .:(file path)
+logs:
+----
+	-will contain the login and logout of the server information
+
+
+File structure of our webpage:
+------------------------------
+
+Root directory(folder name)
+	-index.html(html file name)
+	-index.css(css)
+	-lib folder(folder while giving as product to include all the library we use in project )
+	-WEB-INF folder(folder)
+		-classes(folder)
+			-java class files(after compiled)
+		-web.xml(xml file)
+		
+note:
+-----
+	If there is any change in WEB-INF folder files there we need to restart our server but it is not recommend in other files changes like html or css.
+	
+why j2EE ? javaEE ? jakarata EE ?
+---------------------------------
+	-j2EE(java 2 platform Enterprise edition)(untill java 1.4)
+	-javaEE(java EnterPrise Edition)(java 5 - 8)
+	-jakarata (jakarata EnterPrise Edition)(later all)(owned by eclipse foundation from oracel foundation)
+	(moment from oraclet to eclipse is the major reason for changes of javaEE to jakarta but all packages are same instead of javax use jakarata)
+	
+why servelet?
+-------------
+    -It handles java programs which is platform independent similar to java
+    -performance is better than CGI
+    -It doesnot need extra space which means not need to send separeate request for servlet it will work in same space used by server.
+    -It can interact wiht database , Applets,sockets
+    
+    
+    i)Servlet(I)
+    ii)GenericServlet(Abstract class)
+    ii)HttpServlet(Abstract class)
+
+How it works:
+-------------
+    -The client will send request to the server
+    -From server to Deployment descriptor where servelet will found which contain a XML file to assign which servlet we have to performance
+    (Hence servlet can interact will some other device also)
+
+--->Servlets can be implemented by using jakarata.servlet and jakarata.servlet.http packages.
+
+Servlet life cycle:
+-------------------
+1)init()---------It is only one time initializations
+2)service()------It contains several inbuilt methods doGet,doPost,doPut etc..
+3)destroy()
+============================================================================================================================================================================
+working of a program:
+----------------------
+To get information from html page to servlet and display it:
+-----------------------------------------------------------
+HttpServelt.Request:
+	-In this there is method called getParameter() using which we can get inputs from html to servlet.
+		int i = Integer.parseInt(req.getParameter("num1"));
+			-Here num1 refers to the name given in the html page.
+			-It will give as string so we using parseInt to convert them as integer.
+PrintWriter:
+	-used to display the processed information in a page
+	-getWriter() method in printWriter
+	-out.println() method in the printwriter helps to display the information
+		PrintWriter out = res.getWriter();
+        	out.println("Result is : " + k);
+==============================================================================================================================================================================
+Redirect:
+---------
+	res.sendRedirect("Sq?newk="+k);
+		This is not effecient hence we need to send value also with url.
+==============================================================================================================================================================================
+To send Information from one servlet to another servlet 
+--------------------------------------------------------
+RequestDispacter:
+	-It contains a method called getRequestDispatcher() using we can establish connection
+	-Then if we need to forward the information from one servlet to another servlet and that servlet need to display the output for this there is method called forward().
+	-else if we need to get infromation from that servlet and display we use include() method.
+1)forward():
+	-To send information from one servlet to another servlet
+	-This method is found in RequestDispatcher
+		req.setAttribute("newk",k);
+	        RequestDispatcher rd = req.getRequestDispatcher("Sq");
+                rd.forward(req,res);
+2)include():
+	-To get information from another servlet 
+		 RequestDispatcher rd = req.getRequestDispatcher("signup.html");
+            	 rd.include(req,res);
+Note:
+-----
+	See what is given inside getRequestDispatcher().
+Drawback:
+--------
+	sendredirect and RequestDispatcher both are not efficient hence we use session and cookie. 
+=================================================================================================================================================================================
+session management:
+-------------------
+	-Every page there will be session management in which we can send values.
+			HttpSession session = req.getSession();
+           		session.setAttribute("newk",k);
+            		res.sendRedirect("Sq");
+=================================================================================================================================================================================     
+Cookie:
+------
+	-For a html page there will be a cookie which contain information.
+	-In servlet we can add values in the cookie and access the values in anohter servlet
+    How to add values to cookie in a servlet?
+    		Cookie cookie = new Cookie("newk",k + "");
+    	        res.addCookie(cookie);
+    	
+    How to use values from a cookie in a servlet?
+    		int k=0;
+		 Cookie cookies[] = req.getCookies();
+		 for(Cookie c:cookies)
+		 {
+		    if(c.getName().equals("newk"))
+		    {
+		        k=Integer.parseInt(c.getValue());
+		    }
+         	 }
+==================================================================================================================================================================================
+eg)
+----
+import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Cookie;
+
+public class AddServlet extends HttpServlet 
+{
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException
+    {
+        int i = Integer.parseInt(req.getParameter("num1"));
+        int j = Integer.parseInt(req.getParameter("num2"));
+        int k = 0;
+
+        if(req.getParameter("add1") != null)
+        {
+            k = i+j;
+// printing Directly without square class
+            // PrintWriter out = res.getWriter();
+            // out.println("The sum is " + k);
+        }
+        if(req.getParameter("sub") != null)
+        {
+            k = i-j;
+            // PrintWriter out = res.getWriter();
+            // out.println("The sub is " + k);
+        }
+//using RequestDispatcher
+            // req.setAttribute("newk",k);
+            // RequestDispatcher rd = req.getRequestDispatcher("/Sq");
+            // rd.forward(req,res);
+
+//using sendRedirect
+            //res.sendRedirect("Sq?newk="+k);
+
+//using Session
+//session is used because in sendredirect we want to send value also but for one value it is easy but for more different values it is not good 
+//for that purpose we use session server will maintain seesion for each page 
+            // HttpSession session = req.getSession();
+            // session.setAttribute("newk",k);
+
+            // res.sendRedirect("Sq");
+
+//using Cookie
+            Cookie cookie = new Cookie("newk",k + "");
+            res.addCookie(cookie);
+
+            res.sendRedirect("Sq");
+
+    }
+}
+
+----------------------------
+import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Cookie;
+
+public class SquareServlet extends HttpServlet
+{
+    public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException
+    {
+//using requestDispatcher methods
+
+        // int k = (int)req.getAttribute("newk");
+        // k *= k;
+        // PrintWriter out = res.getWriter();
+        // out.println("Result is : " + k);
+
+//using sendredirect 
+        // int k = Integer.parseInt(req.getParameter("newk"));
+        // k = k*k;
+        // PrintWriter out = res.getWriter();
+        // out.println("result is : "+ k);
+
+//session
+        // HttpSession session = req.getSession();
+        // int k = (int)session.getAttribute("newk");
+        // k = k*k;
+        // PrintWriter out = res.getWriter();
+        // out.println("resutl is " + k); 
+//using cookie
+         int k=0;
+         Cookie cookies[] = req.getCookies();
+         for(Cookie c:cookies)
+         {
+            if(c.getName().equals("newk"))
+            {
+                k=Integer.parseInt(c.getValue());
+            }
+         }
+         k*=k;
+         PrintWriter out = res.getWriter();
+         out.println("The result is : "+k);
+    }
+}
+==============================================================================
+HttpServletRequest: (class) & ServletRequest: (class)
+--------------------------------------------
+1)Enumeration:
+--------------
+	Two methods:
+	------------
+	i)getHeaderNames();
+	ii)getHeader("");
+			-""""To get all the header values of web page.""""
+	eg)
+	---
+	Enumeration<String> e = req.getHeaderNames();
+        while (e.hasMoreElements()) 
+        {
+            String hname = e.nextElement(); 
+            Enumeration<String> hvalues = req.getHeaders(hname);
+    
+            while (hvalues.hasMoreElements()) 
+            {
+                String hvalue = hvalues.nextElement();
+                out.println("<h3>" + hname + " : " + hvalue + "</h3>");
+            }
+        }
+2)Authentation type:
+--------------------
+	-Get the information of the authentaion of what type we used in the xml file......know more about it.
+			String authentaion_type = req.getAuthType();
+        		out.println("<h3> Authentation Type :" + authentaion_type +"</h3>");
+3)cookie[]:
+------------
+4)getDateType:
+-------------
+5)getHeader()  (or) getIntHeader():
+--------------
+	-This is similar to enumeration which wil give the information of the header what we have mentoined as value in the argument.
+		 String useragent = req.getHeader("User-Agent");
+		 out.println("<h3> user agent : "+ useragent +"</h3>" );
+		 
+	-getIntHeader() can be used to integer values in the header but commonly we use getHeader() methods which returun both int and string
+6)Mapping
+---------
+7)getMethod()
+-------------
+	-returns what type of method such as get,post,put,etc.......... based on we used.
+		String name = req.getMethod();
+        	out.println("<h3> Name:" + name +"</h3>");
+8)getPathInfo()
+---------------
+	-returns about any extra path is used.
+		String path = req.getPathInfo();
+        	out.println("<h3> Path:" + path +"</h3>"); 
+9)getPathTranslated()
+------------------------
+		String path = req.getPathTranslated();
+        	out.println("<h3> Path:" + path +"</h3>");
+10)getContextPath()
+-------------------
+	-returns the original path of that page
+		String contextpath = req.getContextPath();
+        	out.println("<h3> contextPath:" + contextpath +"</h3>");
+11)getQueryString()
+-------------------
+	-if in the url there is any query string then that we get return
+		String queryString = req.getQueryString();
+        	out.println("<h3> querystring:" + queryString +"</h3>");
+12)getRemoteUser()
+------------------
+
+=============================================================================================================================================================================
+HttpServletResponse: (class) & ServletRespone: (class)
+------------------------------------------------------
+1)setStatus():
+--------------
+	-we can set the status code 
+		res.setStatus(900);
+2)setContentType():
+-------------------
+	-what type of content such as text/html to read the content correctly in the page we set this.
+		res.setContentType("text/html");
+3)setHeadet():
+-------------
+	-we can set the header information 
+	-we can refersh the page 
+	-we can redirect directly to another page 
+		res.sendRedirect("http://localhost:8080/Login/");
+4)sendRedirect():
+-----------------
+	-used to redirect to a page
+		res.sendRedirect("https://www.google.com");
+5)sendError():
+--------------
+	-we can send error message to a page
+		res.sendError(900, "tamilmani");
+6)getWriter():
+--------------
+	-In printWriter we use to get for that purpose we use getWriter
+		PrintWriter out = res.getWriter()
+7)getOutputStream():
+---------------------
+	-In OutPutStream we can read files,images etc...
+	 	OutPutStream out = res.getOutPutstream();
+8)
+=============================================================================================================================================================================
+web.xml:
+--------
+	-xml stands for Extensible Markup Language
+eg)
+----
+<web-app>
+	<servlet>
+	    <servlet-name>MyServlet</servlet-name>
+	    <servlet-class>com.example.MyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>MyServlet</servlet-name>
+	    <url-pattern>/myservlet</url-pattern>
+	</servlet-mapping>
+</web-app>
+
+context:
+-------
+	 <context-param>
+        	<param-name>newpage</param-name>
+        	<param-value>signup.html</param-value>
+    	</context-param>
+    	
+    	    ServletContext con = req.getServletContext();
+            String str = con.getInitParameter("newpage");
+            out.println("<h3>" + str +"</h3>");
+            res.sendRedirect(str);
+config:
+--------
+	<init-param>
+        	<param-name>newpage</param-name>
+        	<param-value>signup.html</param-value>
+    	</init-param>
+    	
+    		ServletConfig cg = req.getServletConfig();
+            	String str = cg.getInitParameter("newpage");
+            	out.println("<h3>" + str +"</h3>");
+            	res.sendRedirect(str);
+note:
+-----
+	context and config done similar work but if we use commonly for all the servlet then we use context as separately outside of <servlet> but if we want to use individually 
+for each sevlet then metion in servlet itself.
+	
+Filter interface:
+------------------
+	-It is used when we need to do some validations in the input.
+	-work between hmtl and servlet
+	-it is similar to servlet but not servlet
+	-we need to create a class which implements "Filter" interface 
+	-Filter interface has three methods:
+		i)init
+		ii)doFilter
+		iii)destroy
+	-we will config similar like servlet for filter in web.xml
+	eg)
+	--
+		<filter>
+			<filter-name>newUserName</filter-name>
+			<filter-class>OldUserFilter</filter-class>
+    		</filter>
+		<filter-mapping>
+			<filter-name>newUserName</filter-name>
+			<url-pattern>/signup</url-pattern>
+	        </filter-mapping>
+	 -we can use multiple filter for one servlet and config in the xml page else we can use same filter for all servlet.
+	 -using(/*) in url-pattern represents for all the servlet that filter should apply
+	 
+session timeout:
+----------------
+security-constraint:
+------------------
+welcome-file-list:
+-----------------
+	-To represent which html page should open first
+	eg)
+	----
+		<welcome-file-list>
+    			<welcome-file>index.html</welcome-file>
+		</welcome-file-list>
+listener:
+---------
+resource-ref:
+-------------
+=============================================================================================================================================================================
+	
+
+
+
+
+
+

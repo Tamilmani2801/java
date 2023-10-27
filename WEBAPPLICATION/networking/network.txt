@@ -1,0 +1,24 @@
+Network:
+---------
+        In order to connect via Network we need to use socket at both the end
+                i)socketinputstream
+                ii)socketoutputstream
+->Initially socket only at the client silent and at the server side there will be server socket,
+when the client send the request to the server and the request will be accpet by the server socket then socket object will be 
+created in the server side then the connection will be establish between them.
+
+How to make connection:
+-----------------------
+
+Server side
+-------------
+->In server side create a server socket object with the port number
+        ServerSocket s = new ServerSocket(9999);
+->In Socket there is method called "accpet(), give the server socket reference variable to the socket
+        Socket soc = s.accpet();
+client side
+-----------
+->In the client side create a Socket object object and give ip address and port number.
+        Socket soc = new Socket("localhost",9999);
+    ->localhost refers both are on the same machine, if it is in different machine then ip address should provide
+    
