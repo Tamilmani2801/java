@@ -1,0 +1,2 @@
+    In this we are using setter method and injecting values using property in xml file at beans hence this method is known as 
+Setter injection vicevers we can also use constructor and inject values which is known as constructor injection.
