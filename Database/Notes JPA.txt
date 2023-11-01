@@ -1,0 +1,18 @@
+JPA(java persistence API)
+----
+prerequites
+------------
+i)java
+ii)database
+iii)JDBC
+iv)Hibernate(optional)
+
+Note:
+----
+    -There are several ORM frameworks hence if we created using anyone of those in future we cannot able to switch the frameworks
+    so, there created a standard known as JPA.
+    -With the help of JPA we can easily switch the frameworks
+
+Methods of JPA:
+---------------
+i)find()
