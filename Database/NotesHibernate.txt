@@ -1,0 +1,54 @@
+Hibernate:
+----------
+    -ORM framework(object relation mapping)
+prerequites:
+-----------
+i)core java
+ii)sql
+iii)jdbc
+
+Note:
+--------
+    In case of sql we save data in tables hence we send as value in jdbc but most of times we have datas as object in java so object has to  stored in table for that we use "ORM Tools"
+    -some of ORM Tools
+        -Hibernate  
+        -iBatis
+        -Toplink
+ 
+
+ How can we save the objects in Hibernate ?
+    -save(obj)
+        -save is done with help of session.
+        -session is comes under sessionfactory
+        -hence session will done with the help of 
+            i)xml
+            ii)java based configuration
+            iii)annotation
+
+Annotations in hibernate:
+--------------------------
+@Entity ----------------------used to create a table
+@Id  -------------------------used to set primary key
+@Table(name="table_name")-----to set table name 
+@Columns(name="column_name")--to set column name 
+@Transient--------------------hide a column if we dont need in table
+                Note:
+                -----
+                    In case of object there will be several variables if we want to hide a data then we @Tranisent to that variable.
+@Embeddable-------------------one class should embedded in another table in class
+                Note:
+                -----
+                    For example ,in a table for name itself there will be firstname, middlename,lastname in order to maintain we will create this 
+                    in separate class and we will use as name in another class at that time we have to mention "@Embeddable" in that another class 
+                    which contatin firstname ,middlename,lastname.
+@OneTOOne---------------------to connect two table
+@OneToMany
+@ManyToOne
+Methods in hibernate:
+----------------------
+i)save()
+ii)get()
+
+
+JPA()
+-----
