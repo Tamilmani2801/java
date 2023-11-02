@@ -1,7 +1,5 @@
 package com.deleteController;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,32 +8,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.Service.ServiceClass;
-import com.controller.DisplayController;
+import com.Service.DisplayService;
 
 @Controller
 public class DeleteController 
 {
     @Autowired
-    ServiceClass service;
+    DisplayService service;
 
     @PostMapping("/deleteuser")
     public String deleteUser(
         Model model,
         @RequestParam("username")String username
-    ) throws ClassNotFoundException, SQLException
+    ) throws SQLException 
     {
-        Connection c = service.databaseService();
-        
-        String query = "DELETE FROM userdetails WHERE username = ?;";
-        PreparedStatement ps = c.prepareStatement(query);
-        ps.setString(1, username);
-        ps.executeUpdate();
-
-        DisplayController.map.remove(username);
-        model.addAttribute("userMap", DisplayController.map);
-        ps.close();
-        c.close();
+        service.delete(username);
+        model.addAttribute("userMap", service.display());
         return "display";
     }
 }
