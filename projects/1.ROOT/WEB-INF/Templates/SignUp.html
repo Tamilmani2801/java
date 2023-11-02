@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/resources/editsign.css"/>
+
+</head>
+<body>
+    <h1 th:text="${message}"></h1>
+
+    <form action="getDetails" method="post">
+        <section>
+            <div id="signup">ADD DETAILS</div>
+            <div>UserName : <input type="text" name="username" autocomplete="off" required></div>
+            <div>PassWord : <input type="text" name="password" autocomplete="off" required></div>
+            <div>Email id : <input type="email" name="email" autocomplete="off"></div>
+            <div>Mobile No : <input type="text" name="mobileno" autocomplete="off"></div>
+            <div>Date Of Birth : <input type="date" name="dob" autocomplete="off" ></div>
+            <div>Gender : <input type="text" name="gender" autocomplete="off" ></div>
+            <div>Location : <input type="text" name="location" autocomplete="off"></div>
+            <div><button>ADD</button></div>
+        </section>
+    </form>
+</body>
+</html>

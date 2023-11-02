@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/resources/editsign.css">
+</head>
+<body>
+    <h1 th:text="${nouser}"></h1>
+    <form action="getEditDetails" method="post">
+        <section>
+            <div id="signup">Edit Details</div>
+            <div>UserName: <input type="text" name="username" autocomplete="off" th:value="${username}" readonly></div>
+            <div>PassWord: <input type="text" name="password" autocomplete="off" th:value="${password}" required></div>
+            <div>Email id: <input type="email" name="email" autocomplete="off" th:value="${email}"></div>
+            <div>Mobile No: <input type="text" name="mobileno" autocomplete="off" th:value="${mobileno}"></div>
+            <div>Date Of Birth <input type="date" name="dob" autocomplete="off" th:value="${dob}"></div>
+            <div>Gender: <input type="text" name="gender" autocomplete="off" th:value="${gender}"></div>
+            <div>Location:<input type="text" name="location" autocomplete="off" th:value="${location}"></div>
+            <div>
+                <button id="editbutton" class="savebutton">Save</button>
+                <button formaction="canceledit" method="post" id="editbutton">Cancel</button>
+            </div>
+        </section>
+    </form>
+</body>
+</html>

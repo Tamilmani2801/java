@@ -1,0 +1,70 @@
+body 
+{
+    padding: 20px;
+}
+table 
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+td 
+{
+    padding: 10px;    
+    font-size: x-large;
+}
+tr 
+{
+    border-bottom: 3px solid lightgray;
+    border-top: 3px solid lightgray;
+}
+tr:hover 
+{
+    background-color: lightgray;
+}
+button 
+{
+    width: 100px;
+    padding: 10px;
+    font-size:x-large;
+    border-radius: 5px;
+}
+.button-container 
+{
+    display: flex;
+}
+
+.button-container form 
+{
+    margin-right: 10px;
+}
+#addbutton 
+{
+    width: 10%;
+    background-color: green;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.644);
+    margin-left: 10px;
+    margin-top: 70px;
+}
+#editbutton 
+{
+    background-color: rgb(224, 195, 6);
+    color: black;
+}
+#deletebutton 
+{
+    background-color: red;
+    color: white;
+}
+#heading 
+{
+    font-weight: bold;
+}
+#username 
+{
+    font-weight: bold;
+}
+h1 
+{
+    font-size: 50px;
+}
