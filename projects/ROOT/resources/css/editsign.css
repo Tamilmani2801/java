@@ -1,0 +1,53 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+section
+{
+    padding: 50px;
+    width: 30%;
+    border: 1px solid black;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    margin: auto;
+    margin-top: 200px;
+    box-shadow: 0 0 10px black;
+    
+}
+
+button 
+{
+    width: 100px;
+    font-size: larger;
+    font-weight: bold;
+    background-color: red;
+    color: white;         
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+    margin-top: 20px;
+}
+#editbutton
+{
+    width: 25%;
+}
+.savebutton 
+{
+    margin-right: 50px;
+}
+
+div
+{
+    margin-bottom: 10px;
+}
+#signup 
+{
+    font-size: xx-large;
+}
+h1 
+{
+    color: red;
+}

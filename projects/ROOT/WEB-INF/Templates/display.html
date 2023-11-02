@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+    <link rel="stylesheet" href="/resources/display.css">
+</head>
+<body>
+    <h1>Database</h1>
+    <table>
+        <tr id="heading">
+            <td>Username</td>
+            <td>Password</td>
+            <td>Email</td>
+            <td>Mobile No</td>
+            <td>Date Of Birth</td>
+            <td>Gender</td>
+            <td>Location</td>
+            <td>Actions</td>
+        </tr>
+        <tr th:each="entry : ${userMap}">
+            <td id="username" th:text="${entry.key}"></td>
+            <td th:text="${entry.value.passWord}"></td>
+            <td th:text="${entry.value.email}"></td>
+            <td th:text="${entry.value.mobileNo}"></td>
+            <td th:text="${entry.value.dateOfBirth}"></td>
+            <td th:text="${entry.value.gender}"></td>
+            <td th:text="${entry.value.location}"></td>
+
+            <td class="button-container">
+                <form action="edituser" method="post">
+                    <button id="editbutton" name="username" th:value="${entry.key}">Edit</button>
+                </form>
+                <form action="deleteuser" method="post">
+                    <button onclick="return confirm('conform delete')" id="deletebutton" name="username" th:value="${entry.key}">Del</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <form action="addusers" method="post">
+        <button id="addbutton">Add USERS</button>
+    </form>
+</body>
+</html>
+
