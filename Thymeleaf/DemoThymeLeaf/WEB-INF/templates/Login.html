@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Example</title>
+</head>
+<body>
+    <h1 th:text="${temp}">Hello, Thymeleaf!></h1>
+    <h1>Table Example</h1>    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Numbers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="number : ${data}">
+                <td th:text="${number}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

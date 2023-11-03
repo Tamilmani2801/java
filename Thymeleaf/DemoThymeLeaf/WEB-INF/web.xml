@@ -1,0 +1,22 @@
+
+<web-app >
+    <!-- <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>ThymeleafServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping> -->
+
+    <servlet>
+        <servlet-name>SubmitServlet</servlet-name>
+        <servlet-class>ThymeleafServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SubmitServlet</servlet-name>
+        <url-pattern>/submit</url-pattern>
+    </servlet-mapping>
+</web-app>
